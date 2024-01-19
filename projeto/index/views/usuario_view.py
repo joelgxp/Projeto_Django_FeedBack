@@ -17,13 +17,13 @@ def cadastrar_login(request):
         
         if not senha == senha_confirmar:
             messages.add_message(request, constants.ERROR, 'As senhas não coincídem.')
-            return redirect('criar_conta')
+            return redirect('accounts/signup')
         
         user = User.objects.filter(username=username)
         
         if user.exists():
             messages.add_message(request, constants.ERROR, 'Usuário já cadastrado.')
-            return redirect('criar_conta')
+            return redirect('accounts/signup/')
         try:
             User.objects.create_user(
                 username=username,
