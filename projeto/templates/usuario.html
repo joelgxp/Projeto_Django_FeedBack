@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container" id="blur">
+    <div class="card">
+        <section class="table__header">
+            <div class="title">
+                <h1>Usuário</h1>
+                <button class="btn" title="Criar" onclick="openForm(this)" id="criar">
+                    <i class="ri-add-circle-fill"></i>
+                </button>
+            </div>
+
+            <div class="input-group">
+                <input type="search" name="search" id="search" placeholder="Pesquisar..." onkeyup="filterTable()">
+                <i class="ri-search-line"></i>
+            </div>
+
+            <!-- TODO: adicionar funcionalidade -->
+            <div class="col-sm-2">
+                <select class="form-select">
+                    <option selected="">Filtros:</option>
+                    <option value="1" checked>Ativos</option>
+                    <option value="2">Inativos</option>
+                    <option value="3">Todos</option>
+                </select>
+            </div>
+        </section>
+        <section class="table__body">
+            <table class="table-sortable" id="table-sortable">
+                <thead>
+                    <tr>
+                        <th class="th-id">ID</th>
+                        <th class="th-name">Nome</th>
+                        <th>Setor</th>
+                        <th>E-mail</th>
+                        <th>Tipo</th>
+                        <th class="th-action" colspan="2">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.id }}</td>
+                        <td>{{ usuario.nome }}</td>
+                        <td>{{ usuario.departamento }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>{{ usuario.tipo }}</td>
+                        <td>
+                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                    class="ri-settings-3-line"></i></a>
+                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                    class="ri-delete-bin-2-line"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </section>
+    </div>
+</div>
+
+<div class="popup" id="popup">
+    <img src="{% static 'image/exclamation.png' %}" alt="">
+    <h2>Cuidado!</h2>
+    <p>Tem certeza que deseja deletar esse usuario?</p>
+    <button class="btn-primary" type="button" onclick="closePopup()">Cancelar</button>
+    <button class="btn-danger" type="button" onclick="deletar()">Deletar</button>
+</div>
+
+
+<script src="{% static 'js/usuario.js' %}"></script>
+
+{% endblock %}

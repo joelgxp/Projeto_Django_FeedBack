@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    background-color: var(--white);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+}
+
+nav ul {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav li {
+    height: 60px;
+}
+
+nav li:first-child {
+    margin-right: auto;
+}
+
+nav a {
+    height: 100%;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+nav a:hover {
+    background-color: #F0F0F0;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    z-index: 999;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.sidebar li {
+    width: 100%;
+}
+
+.logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.sidebar a {
+    width: 100%;
+}
+
+.menu-button {
+    display: none;
+}
+
+.ri-close-line,
+.ri-menu-fill {
+    font-size: 2.5rem;
+}
+
+
+.navbar {
+    background-color: #f8f9fa; /* Cor de fundo da barra de navegação */
+}
+
+.nav-link {
+    color: #495057; /* Cor do texto dos links */
+}
+
+.dropdown-menu {
+    min-width: 160px; /* Largura mínima do menu suspenso */
+}
+
+.dropdown-item {
+    color: #495057; /* Cor do texto dos itens do menu suspenso */
+}
+
+.dropdown-item:hover {
+    background-color: #e9ecef; /* Cor de fundo ao passar o mouse sobre os itens do menu */
+}
+
+/* Estilo para o modal */
+.modal-content {
+    border-radius: 10px;
+}
+
+/* Estilo para a barra de navegação */
+.navbar {
+    background-color: #f8f9fa; /* Cor de fundo da barra de navegação */
+    padding: 15px;
+}
+
+.navbar-brand {
+    font-size: 1.5rem; /* Tamanho da fonte do logotipo da barra de navegação */
+}
+
+.navbar-nav .nav-link {
+    color: #007bff; /* Cor do texto dos links da barra de navegação */
+}
+
+/* Adiciona algum espaço extra entre os itens da barra de navegação */
+.navbar-nav .nav-item {
+    margin-right: 15px;
+}
+
+/* Estilo para o botão "Criar Usuário" */
+.navbar-nav .nav-item .nav-link[data-toggle="modal"] {
+    cursor: pointer;
+    color: #28a745; /* Cor do texto do botão */
+    font-weight: bold;
+}
+
+/* Estilo para o botão de fechar no cabeçalho do modal */
+.modal-header .close {
+    color: #dc3545; /* Cor do texto do botão de fechar */
+}
+
+/* Estilo para os botões do rodapé do modal */
+.modal-footer .btn-primary {
+    background-color: #007bff; /* Cor de fundo do botão "Salvar" */
+    color: #fff; /* Cor do texto do botão "Salvar" */
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d; /* Cor de fundo do botão "Fechar" */
+    color: #fff; /* Cor do texto do botão "Fechar" */
+}
+
+/* Adiciona algum espaço extra entre os botões do rodapé do modal */
+.modal-footer .btn {
+    margin-right: 10px;
+}
+
+
+@media(max-width: 800px) {
+    .hideOnMobile {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+}
+
+@media(max-width: 400px) {
+    .sidebar {
+        width: 100%;
+    }
+}
