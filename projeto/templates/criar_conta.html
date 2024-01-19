@@ -10,7 +10,7 @@
         <div class="pill-4 rotate-45"></div>
     </div>
     <div class="new-account">
-        <form action="{% url 'criar_conta' %}" method="POST" id="new-account">{% csrf_token %}
+        <form action="{% url 'accounts/signup' %}" method="POST" id="new-account">{% csrf_token %}
             <h3 class="title">Criar Conta</h3>
             {% if messages %}
                 {% for message in messages %}
