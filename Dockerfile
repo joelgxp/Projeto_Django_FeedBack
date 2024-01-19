@@ -1,4 +1,8 @@
-FROM python:3.8.5-alpine
+FROM python:3.11.7-slim-bullseye
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+ENV DEBUG 1
 
 RUN pip install --upgrade pip
 
