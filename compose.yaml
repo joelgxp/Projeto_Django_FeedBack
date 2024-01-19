@@ -4,15 +4,15 @@ services:
   django_gunicorn:
     volumes:
       - static:/app/static
-    env_file:
-      - .env
     build:
       context: .
+    image: joelgxp/django_feedback:0.0.1
     ports:
       - 8000:8000
 
   nginx:
     build: ./nginx
+    image: joelgxp/nginx_feedback:0.0.1
     volumes:
       - static:/static
     ports:
