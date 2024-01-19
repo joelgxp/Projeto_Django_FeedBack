@@ -21,3 +21,18 @@ class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuarios
         fields = ['nome', 'departamento', 'email', 'tipo', 'senha']
+        
+    widgets = {
+        'senha': forms.PasswordInput(),
+        'tipo': forms.Select(choices=Usuarios.TIPO_CHOICES),
+    }
+        
+class Reunioes(models.Model):
+    id_lider = models.CharField(max_length=255)
+    id_colaborador = models.CharField(max_length=255)
+    data = models.DateField()
+    ativo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.id_lider} - {self.id_colaborador} - {self.data}"
+    

@@ -30,6 +30,8 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'http://144.22.195.119', 'https://144.22.195.119', 'http://localhost', 'https://localhost']
+
 TEMPLATES_DIR = BASE_DIR / 'templates'
 
 # Application definition

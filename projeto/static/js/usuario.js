@@ -27,23 +27,22 @@ function closePopup() {
 // Popup formulário
 function openForm(button, id) {
     const buttonID = button.id
-    let url;
-
+    popForm.classList.add('open-wrapper')
     if (buttonID === "editar") {
-        url = `criar_editar_usuario/${id}/`;
-    } else {
-        url = `criar_editar_usuario/`;
-    }
+        document.getElementById("title-form").innerText = "Editar"
+        url = `usuario/${id}/`;
 
-    window.location.href = url;
-    blur.classList.add('active');
+    } else {
+        document.getElementById("title-form").innerText = "Criar"
+        url = `usuario/`;
+    }
+    blur.classList.add('active')
 }
 
 
 function closeForm() {
     popForm.classList.remove('open-wrapper');
     blur.classList.remove('active');
-    window.location.reload();
 }
 
 // Filtro de pesquisa

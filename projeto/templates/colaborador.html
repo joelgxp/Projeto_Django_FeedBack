@@ -73,31 +73,7 @@
     </form>
 </div>
 
-<div class="popup" id="popup">
-    <img src="{% static 'image/exclamation.png' %}" alt="">
-    <h2>Cuidado!</h2>
-    <p>Tem certeza que deseja deletar esse colaborador?</p>
-    <button class="btn-primary" type="button" onclick="closePopup()">Cancelar</button>
-    <button class="btn-danger" type="button" onclick="deletarColaborador()">Deletar</button>
-</div>
-
-<div class="alert alert-reg">
-    <i class="ri-checkbox-circle-fill"></i>
-    <span class="reg-msg msg">Salvo com sucesso!</span>
-    <span class="close-btn close-btn-reg">
-        <i class="ri-close-line"></i>
-    </span>
-</div>
-
-<div class="alert alert-del">
-    <i class="ri-checkbox-circle-fill"></i>
-    <span class="del-msg msg">Deletado com sucesso!</span>
-    <span class="close-btn close-btn-del">
-        <i class="ri-close-line"></i>
-    </span>
-</div>
 
 <script src="{% static 'js/colaborador.js' %}"></script>
-<script src="{% static 'js/colaborador.service.js' %}"></script>
 
 {% endblock %}

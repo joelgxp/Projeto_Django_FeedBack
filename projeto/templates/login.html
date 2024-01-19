@@ -10,7 +10,7 @@
         <div class="pill-4 rotate-45"></div>
     </div>
     <div class="login">
-        <form action="{% url 'logar' %}" method="POST">{% csrf_token %}
+        <form action="{% url 'accounts/login' %}" method="POST">{% csrf_token %}
             <h3 class="title">Login</h3>
             {% if messages %}
                 {% for message in messages %}

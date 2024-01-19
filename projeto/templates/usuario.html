@@ -63,6 +63,37 @@
     </div>
 </div>
 
+<div class="wrapper" id="wrapper">
+    <form action="{% url 'usuario' %}" method="POST" id="formLider">{% csrf_token %}
+        <h2 class="title" id="title-form"></h2>
+
+        <div class="text-input">
+            <label for="nome">Nome</label>
+            {{ form.nome }}
+        </div>
+        <div class="text-input">
+            <label for="departamento">Setor</label>
+            {{ form.departamento }}
+        </div>
+        <div class="text-input">
+            <label for="email">E-mail</label>
+            {{ form.email }}
+        </div>
+        <div class="text-input">
+            <label for="tipo">Tipo</label> 
+            {{ form.tipo }}
+        </div>
+        <div class="text-input">
+            <label for="senha">Senha</label>
+            {{ form.senha }}
+        </div>
+        <div class="buttons">
+            <button type="submit" class="btn-save" id="btn-save">Salvar</button>
+            <button class="btn-primary" onclick="closeForm()">Cancelar</button>
+        </div>
+    </form>
+</div>
+
 <div class="popup" id="popup">
     <img src="{% static 'image/exclamation.png' %}" alt="">
     <h2>Cuidado!</h2>

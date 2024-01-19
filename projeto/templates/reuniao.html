@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% block content %}
+{% load static %}
 <div class="container" id="blur">
     <div class="card">
         <section class="table__header">
@@ -71,33 +72,6 @@
 </div>
 
 
-<div class="popup" id="popup">
-    <img src="{{url_for('static', filename='image/exclamation.png')}}" alt="">
-    <h2>Cuidado!</h2>
-    <p>Tem certeza que deseja deletar essa reunião?</p>
-    <button class="btn-primary" type="button" onclick="closePopup()">Cancelar</button>
-    <button class="btn-danger" type="button" onclick="deletarReuniao()">Deletar</button>
-</div>
-
-<div class="alert alert-reg">
-    <i class="ri-checkbox-circle-fill"></i>
-    <span class="reg-msg msg">Salvo com sucesso!</span>
-    <span class="close-btn close-btn-reg">
-        <i class="ri-close-line"></i>
-    </span>
-</div>
-
-<div class="alert alert-del">
-    <i class="ri-checkbox-circle-fill"></i>
-    <span class="del-msg msg">Deletado com sucesso!</span>
-    <span class="close-btn close-btn-del">
-        <i class="ri-close-line"></i>
-    </span>
-</div>
-
-<script src="{{ url_for('static', filename='js/reuniao.js')}}"></script>
-<script src="{{ url_for('static', filename='js/lider.service.js')}}"></script>
-<script src="{{ url_for('static', filename='js/colaborador.service.js')}}"></script>
-<script src="{{ url_for('static', filename='js/reuniao.service.js')}}"></script>
+<script src="{% static 'js/reuniao.js' %}"></script>
 
 {% endblock %}
