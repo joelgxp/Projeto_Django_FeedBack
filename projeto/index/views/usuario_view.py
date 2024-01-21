@@ -23,13 +23,13 @@ def cadastrar_login(request):
         
         if user.exists():
             messages.add_message(request, constants.ERROR, 'Usuário já cadastrado.')
-            return redirect('accounts/signup/')
+            return redirect('accounts/signup')
         try:
             User.objects.create_user(
                 username=username,
                 password=senha
             )
-            return redirect('logar')
+            return redirect('accounts/login')
         except:
             messages.add_message(request, constants.ERROR, 'Erro interno do servidor.')
             return redirect('/criar_conta')
@@ -46,7 +46,7 @@ def login(request):
         if user:
             auth.login(request, user)
             messages.add_message(request, constants.SUCCESS, 'Logado!')
-            return redirect('usuario')
+            return redirect('index')
         else:
             messages.add_message(request, constants.ERROR, 'Usuario ou senha inválidos.')
             return redirect('accounts/login')
@@ -59,7 +59,7 @@ def logout(request):
 @login_required
 def usuarios(request):
     if request.method == 'GET':
-        usuarios = Usuarios.objects.all()
+        usuarios = Usuarios.objects.filter(tipo='Líder')
         return render(request, 'usuario.html', {'usuarios': usuarios})
     
     elif request.method == 'POST':
