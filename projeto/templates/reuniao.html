@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% block content %}
 {% load static %}
+
 <div class="container" id="blur">
     <div class="card">
         <section class="table__header">
@@ -40,7 +41,20 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
-     
+                    {% for reuniao in reunioes %}
+                    <tr>
+                        <td>{{ reuniao.id }}</td>
+                        <td>{{ reuniao.id_lider }}</td>
+                        <td>{{ reuniao.id_colaborador }}</td>
+                        <td>{{ reuniao.data }}</td>
+                        <td>
+                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                    class="ri-settings-3-line" title="Editar" onclick="openForm(this)"></i></a>
+                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                    class="ri-delete-bin-2-line"></i></a>
+                        </td>
+                    </tr>     
+                    {% endfor %}
                 </tbody>
             </table>
         </section>
@@ -48,20 +62,20 @@
 </div>
 
 <div class="wrapper" id="wrapper">
-    <form action="" id="formReuniao">
+    <form action="{% url 'reunioes' %}" method="POST" id="formReuniao">{% csrf_token %}
         <h2 class="title" id="title-form"></h2>
 
         <div class="text-input">
             <label for="id_lider">Líder</label>
-            <select type="text" name="id_lider" id="id_lider"></select>
+            {{ form.id_lider }}
         </div>
         <div class="text-input">
             <label for="id_colaborador">Colaborador</label>
-            <select type="text" name="id_colaborador" id="id_colaborador"></select>
+            {{ form.id_colaborador }}
         </div>
         <div class="text-input">
             <label for="data">Data</label>
-            <input type="date" name="data_reuniao" id="data" placeholder="Informe a data" required>
+            {{ form.data }}
         </div>
 
         <div class="buttons">
