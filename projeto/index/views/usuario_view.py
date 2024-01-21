@@ -5,17 +5,15 @@ from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-from index.models import Usuarios, UsuarioForm
-
-def cadastrar_login(request):
+def signup(request):
     if request.method == "GET":
-        return render(request, 'criar_conta.html')
+        return render(request, 'accounts/signup.html')
     else:
         username = request.POST.get('username')
-        senha = request.POST.get('senha')
+        password = request.POST.get('senha')
         senha_confirmar = request.POST.get('senha_confirmar')
         
-        if not senha == senha_confirmar:
+        if not password == senha_confirmar:
             messages.add_message(request, constants.ERROR, 'As senhas não coincídem.')
             return redirect('accounts/signup')
         
@@ -27,16 +25,16 @@ def cadastrar_login(request):
         try:
             User.objects.create_user(
                 username=username,
-                password=senha
+                password=password
             )
-            return redirect('accounts/login')
+            return redirect('accounts/signin')
         except:
             messages.add_message(request, constants.ERROR, 'Erro interno do servidor.')
-            return redirect('/criar_conta')
+            return redirect('accounts/signup')
 
-def login(request):
+def signin(request):
     if request.method == "GET":
-        return render(request, 'login.html')
+        return render(request, 'accounts/signin.html')
     elif request.method == "POST":
         username = request.POST.get('username')
         senha = request.POST.get('password')
@@ -49,26 +47,10 @@ def login(request):
             return redirect('index')
         else:
             messages.add_message(request, constants.ERROR, 'Usuario ou senha inválidos.')
-            return redirect('accounts/login')
+            return redirect('accounts/signin')
 
 @login_required
 def logout(request):
     auth.logout(request)
-    return redirect('accounts/login')
+    return redirect('accounts/signin')
 
-@login_required
-def usuarios(request):
-    if request.method == 'GET':
-        usuarios = Usuarios.objects.filter(tipo='Líder')
-        return render(request, 'usuario.html', {'usuarios': usuarios})
-    
-    elif request.method == 'POST':
-        form = UsuarioForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect(reverse('usuario'))
-        else:
-            # Crie um formulário vazio (ou preenchido com os dados existentes do líder)
-            form = UsuarioForm()
-            
-        return render(request, 'usuario.html', {'form': form})
