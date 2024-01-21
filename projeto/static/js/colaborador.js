@@ -30,10 +30,10 @@ function openForm(button, id) {
     popForm.classList.add('open-wrapper')
     if (buttonID === "editar") {
         document.getElementById("title-form").innerText = "Editar"
-        editarColaborador(id)
+        url = `colaborador/${id}/`;
     } else {
         document.getElementById("title-form").innerText = "Criar"
-        criarColaborador()
+        url = `colaborador/`;
     }
     blur.classList.add('active')
 }
@@ -41,7 +41,6 @@ function openForm(button, id) {
 function closeForm() {
     popForm.classList.remove('open-wrapper');
     blur.classList.remove('active');
-    window.location.reload();
 }
 
 // Filtro de pesquisa
@@ -139,127 +138,6 @@ document.querySelectorAll('.table-sortable th').forEach(headerCell => {
     })
 })
 
-function listarColaboradores() {
-
-    if (inputRadio) {
-        inputRadio.forEach((element) => {
-            if (element.id === 'ativo') {
-                getColaboradoresAtivos()
-            }
-        })
-    }
-    getColaboradores()
-        .then((data) => {
-            inputArray = Array.from(inputRadio)
-            inputArray.forEach((element) => {
-                element.addEventListener('click', () => {
-                    if (element.checked) {
-                        let idSelecionado = element.id
-                        const colaboradoresFiltrados = filtrarPorAtivo(data, idSelecionado)
-                        renderizarTabela(colaboradoresFiltrados)
-                    }
-
-                })
-            })
-
-        })
-        .catch((erro) => {
-            console.log(erro)
-        })
-}
-
-function getColaboradoresAtivos() {
-    getColaboradores()
-        .then((data) => {
-            const colaboradoresAtivos = data.filter(colaborador => colaborador.ativo === 1) // Filtra colaboradores ativos
-            renderizarTabela(colaboradoresAtivos)
-        })
-}
-
-function renderizarTabela(lista) {
-    console.log(lista)
-    tbody.innerHTML = ''
-    lista.forEach((item) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td data-title="ID">${item.id}</td>
-            <td data-title="Nome">${item.nome}</td>
-            <td data-title="Setor">${item.departamento}</td>
-            <td data-title="E-mail">${item.email}</td>
-            <td data-title="Ações">
-            <button class="btn" type="button" title="Editar" onclick="openForm(this, ${item.id})" id="editar">
-                <i class="ri-edit-2-fill"></i>
-            </button>
-        </td>
-        <td>
-            <button class="btn" type="submit" title="Deletar" onclick="openPopup(${item.id})">
-                <i class="ri-delete-bin-2-fill"></i>
-            </button>
-        </td>
-        `
-        tbody.appendChild(tr)
-    })
-}
-
-function deletarColaborador() {
-    const id = idDelete
-    const dados = { ativo: 0 }
-    putColaboradorAtivo(id, dados)
-        .then(() => {
-            closePopup()
-            alertaDeletadoSucesso()
-        })
-        .catch((erro) => {
-            console.log("Entrou no erro")
-        })
-}
-
-function criarColaborador() {
-    formColaborador.addEventListener('submit', (e) => {
-        e.preventDefault()
-        const fd = new FormData(formColaborador)
-        const dadosFormulario = Object.fromEntries(fd)
-
-        postColaborador(dadosFormulario)
-            .then(() => {
-                btnSalvar.disabled = true;
-                alertaSucesso()
-            })
-            .catch((erro) => {
-                console.log(erro)
-            })
-
-    })
-}
-
-function editarColaborador(id) {
-    getColaborador(id)
-        .then((data) => {
-            document.getElementById('nome').value = data.nome
-            document.getElementById('departamento').value = data.departamento
-            document.getElementById('email').value = data.email
-            document.getElementById('senha').value = data.senha
-        })
-        .catch((erro) => {
-            console.log(erro)
-        })
-
-    formColaborador.addEventListener('submit', (e) => {
-        e.preventDefault()
-        const fd = new FormData(formColaborador)
-        const dadosFormulario = Object.fromEntries(fd)
-
-        putColaborador(id, dadosFormulario)
-            .then(() => {
-                btnSalvar.disabled = true;
-                alertaSucesso();
-            })
-            .catch((erro) => {
-                console.log(erro)
-            })
-
-    })
-}
 
 // Notificação de alerta DELETADO
 function alertaDeletadoSucesso() {
@@ -308,6 +186,3 @@ function filtrarPorAtivo(lista, ativoFiltrado) {
     return lista.filter(leader => leader.ativo === valorAtivoFiltrado);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    listarColaboradores()
-})

@@ -39,7 +39,6 @@ function openForm(button, id) {
     blur.classList.add('active')
 }
 
-
 function closeForm() {
     popForm.classList.remove('open-wrapper');
     blur.classList.remove('active');
