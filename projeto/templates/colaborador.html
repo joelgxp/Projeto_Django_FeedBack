@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% block content %}
 {% load static %}
+
 <div class="container" id="blur">
     <div class="card">
         <section class="table__header">
@@ -17,15 +18,13 @@
             </div>
 
             <!-- TODO: adicionar funcionalidade -->
-            <div class="input-radio">
-                <input type="radio" name="radioButton" id="ativo" checked>
-                <label for="ativo">Ativo</label>
-                
-                <input type="radio" name="radioButton" id="inativo">
-                <label for="inativo">Inativo</label>
-
-                <input type="radio" name="radioButton" id="todos">
-                <label for="todos">Todos</label>
+            <div class="col-sm-2">
+                <select class="form-select">
+                    <option selected="">Filtros:</option>
+                    <option value="1" checked>Ativos</option>
+                    <option value="2">Inativos</option>
+                    <option value="3">Todos</option>
+                </select>
             </div>
         </section>
         <section class="table__body">
@@ -36,10 +35,26 @@
                         <th class="th-name">Nome</th>
                         <th>Setor</th>
                         <th>E-mail</th>
+                        <th>Tipo</th>
                         <th class="th-action" colspan="2">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="tbody">
+                    {% for colaborador in colaboradores %}
+                    <tr>
+                        <td>{{ colaborador.id }}</td>
+                        <td>{{ colaborador.nome }}</td>
+                        <td>{{ colaborador.departamento }}</td>
+                        <td>{{ colaborador.email }}</td>
+                        <td>{{ colaborador.tipo }}</td>
+                        <td>
+                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i class="ri-settings-3-line"
+                                    title="Editar" onclick="openForm(this)"></i></a>
+                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                    class="ri-delete-bin-2-line"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </section>
@@ -47,25 +62,25 @@
 </div>
 
 <div class="wrapper" id="wrapper">
-    <form action="" id="formColaborador">
+    <form action="{% url 'colaborador' %}" method="POST" id="formColaborador">{% csrf_token %}
         <h2 class="title" id="title-form"></h2>
+
         <div class="text-input">
             <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome" placeholder="Informe o nome" required>
+            {{ form.nome }}
         </div>
         <div class="text-input">
             <label for="departamento">Setor</label>
-            <input type="text" name="departamento" id="departamento" placeholder="Informe o departamento" required>
+            {{ form.departamento }}
         </div>
         <div class="text-input">
             <label for="email">E-mail</label>
-            <input type="email" name="email" id="email" placeholder="Informe o e-mail" required>
+            {{ form.email }}
         </div>
         <div class="text-input">
             <label for="senha">Senha</label>
-            <input type="password" name="senha" id="senha" placeholder="Informe a senha" required>
+            {{ form.senha }}
         </div>
-
         <div class="buttons">
             <button type="submit" class="btn-save" id="btn-save">Salvar</button>
             <button class="btn-primary" onclick="closeForm()">Cancelar</button>
