@@ -2,7 +2,7 @@ from django import forms
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class Lideres(AbstractUser):   
+class Lider(AbstractUser):   
     nome = models.CharField(max_length=255)
     departamento = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
@@ -10,22 +10,31 @@ class Lideres(AbstractUser):
     ativo = models.BooleanField(default=True)
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'password', 'nome', 'departamento', 'tipo']
+    REQUIRED_FIELDS = ['username', 'password', 'departamento', 'tipo']
 
     def __str__(self):
         return f"{self.nome} - {self.email} - {self.departamento}"
     
-class LideresForm(forms.ModelForm):
+class LiderForm(forms.ModelForm):
     class Meta:
-        model = Lideres
-        fields = ['nome', 'departamento', 'email', 'password']
+        model = Lider
+        fields = ['username', 'departamento', 'email', 'password', 'groups']
+        
+    widgets = {
+        'password': forms.PasswordInput(),
+    }
+    
+class LiderFormSignup(forms.ModelForm):
+    class Meta:
+        model = Lider
+        fields = ['email', 'password']
         
     widgets = {
         'password': forms.PasswordInput(),
     }
         
 
-class Colaboradores(models.Model):   
+class Colaborador(models.Model):   
     nome = models.CharField(max_length=255)
     departamento = models.CharField(max_length=255)
     email = models.EmailField()
@@ -36,12 +45,14 @@ class Colaboradores(models.Model):
     def __str__(self):
         return f"{self.nome} - {self.email} - {self.departamento}"
     
-class ColaboradoresForm(forms.ModelForm):
+class ColaboradorForm(forms.ModelForm):
     class Meta:
-        model = Colaboradores
+        model = Colaborador
         fields = ['nome', 'departamento', 'email', 'senha']
         
     widgets = {
         'senha': forms.PasswordInput(),
     }
+    
+
         

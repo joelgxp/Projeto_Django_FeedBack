@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rolepermissions',
     'index',
     'reunioes',
     
@@ -118,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'index.Lideres'
+AUTH_USER_MODEL = 'index.Lider'
 
 
 # Internationalization
@@ -157,3 +158,5 @@ MESSAGE_TAGS = {
  constants.WARNING: 'alert-warning',
 }
 
+# Login
+LOGIN_REDIRECT_URL = '/index/'
