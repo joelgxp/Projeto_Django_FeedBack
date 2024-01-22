@@ -6,13 +6,13 @@ services:
       - static:/app/static
     build:
       context: .
-    image: joelgxp/django_feedback:0.0.1
+    image: joelgxp/feedback_django:0.0.1
     ports:
       - 8000:8000
 
   nginx:
     build: ./nginx
-    image: joelgxp/nginx_feedback:0.0.1
+    image: joelgxp/feedback_nginx:0.0.1
     volumes:
       - static:/static
     ports:
