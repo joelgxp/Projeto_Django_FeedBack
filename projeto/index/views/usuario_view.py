@@ -1,30 +1,34 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
+from ..models import Lider, LiderFormSignup
+
 def signup(request):
     if request.method == "GET":
         return render(request, 'accounts/signup.html')
-    else:
-        username = request.POST.get('username')
-        password = request.POST.get('senha')
+    
+    elif request.method == 'POST':
+        username =  request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
         senha_confirmar = request.POST.get('senha_confirmar')
         
         if not password == senha_confirmar:
             messages.add_message(request, constants.ERROR, 'As senhas não coincídem.')
             return redirect('accounts/signup')
         
-        user = User.objects.filter(username=username)
+        user = Lider.objects.filter(email=email)
         
         if user.exists():
             messages.add_message(request, constants.ERROR, 'Usuário já cadastrado.')
             return redirect('accounts/signup')
         try:
-            User.objects.create_user(
+            Lider.objects.create_user(
                 username=username,
+                email=email,
                 password=password
             )
             return redirect('accounts/signin')
