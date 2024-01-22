@@ -16,16 +16,6 @@
                 <input type="search" name="search" id="search" placeholder="Pesquisar..." onkeyup="filterTable()">
                 <i class="ri-search-line"></i>
             </div>
-
-            <!-- TODO: adicionar funcionalidade -->
-            <div class="col-sm-2">
-                <select class="form-select">
-                    <option selected="">Filtros:</option>
-                    <option value="1" checked>Ativos</option>
-                    <option value="2">Inativos</option>
-                    <option value="3">Todos</option>
-                </select>
-            </div>
         </section>
         <section class="table__body">
             <table class="table-sortable" id="table-sortable">
@@ -48,10 +38,10 @@
                         <td>{{ colaborador.email }}</td>
                         <td>{{ colaborador.tipo }}</td>
                         <td>
-                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i class="ri-settings-3-line"
-                                    title="Editar" onclick="openForm(this)"></i></a>
-                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                    class="ri-delete-bin-2-line"></i></a>
+                            <a class="text-reset fs-16 px-1"> <i class="ri-settings-3-line" title="Editar"
+                                    onclick="openForm(this)"></i></a>
+                            <a class="text-reset fs-16 px-1"> <i class="ri-delete-bin-2-line"
+                                    onclick="openPopup(this)"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

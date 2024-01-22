@@ -121,33 +121,3 @@ document.querySelectorAll('.table-sortable th').forEach(headerCell => {
         sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
     })
 })
-
-// Notificação de alerta DELETADO
-function alertaDeletadoSucesso() {
-    $('.alert-del').addClass("show");
-    $('.alert-del').removeClass("hide");
-    $('.alert-del').addClass("showAlert");
-    setTimeout(function () {
-        $('.alert-del').removeClass("show");
-        $('.alert-del').addClass("hide");
-        $('.alert-del').removeClass("showAlert");
-        window.location.reload()
-    }, 3000);
-};
-
-$('.close-btn-del').click(function () {
-    $('.alert-del').removeClass("show");
-    $('.alert-del').addClass("hide");
-});
-
-// Notificação de alerta CADASTRADO OU EDITADO
-function alertaSucesso() {
-    $('.alert-reg').addClass("show");
-    $('.alert-reg').removeClass("hide");
-    $('.alert-reg').addClass("showAlert");
-    setTimeout(function () {
-        $('.alert-reg').removeClass("show");
-        $('.alert-reg').addClass("hide");
-        closeForm()
-    }, 3000);
-};

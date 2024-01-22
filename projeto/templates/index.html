@@ -9,9 +9,6 @@
     <title>Connect - Sua plataforma de 1:1</title>
     <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.6.0/fonts/remixicon.css">
 
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -31,27 +28,22 @@
                 </a>
             </li>
             <li>
-                <a href="/logar">Login</a>
-            </li>
-            <li>
-                <a href="/usuario">Usuários</a>
+                <a href="/lider">Líderes</a>
             </li>
             <li>
                 <a href="/colaborador">Colaborador</a>
             </li>
             <li>
-                <a href="/reuniao">Reunião</a>
+                <a href="/reuniao/reunioes">Reunião</a>>
+            </li>
+                <a href="/accounts/logout">Sair</a>
+            </li>
+                <a href="">Bem vindo {{ usuario }}!</a>
             </li>
         </ul>
         <ul>
             <li>
                 <a class="logo" href="">Connect</a>
-            </li>
-            <li class="hideOnMobile">
-                <a href="/accounts/signin">Login</a>
-            </li>
-            <li class="hideOnMobile">
-                <a href="/usuario">Usuários</a>
             </li>
             <li class="hideOnMobile">
                 <a href="/lider">Líderes</a>
@@ -62,28 +54,11 @@
             <li class="hideOnMobile">
                 <a href="/reuniao/reunioes">Reunião</a>
             </li>
-
-
-            <li class="nav-item dropdown hideOnMobile">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="d-lg-block d-none">
-                        <h5 class="my-0 fw-normal">{{ usuario }} <i
-                                class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i></h5>
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <!-- item-->
-                    <a href="/profile" class="dropdown-item">
-                        <i class="ri-account-circle-line fs-18 align-middle me-1"></i>
-                        <span>Minha Conta</span>
-                    </a>
-                    <!-- item-->
-                    <a href="/accounts/logout" class="dropdown-item logout">
-                        <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
-                        <span>Sair</span>
-                    </a>
-                </div>
+            <li class="hideOnMobile">
+                <a href="/accounts/logout">Sair</a>
+            </li>
+            <li class="hideOnMobile">
+                <a href="">Olá, {{ usuario }}!</a>
             </li>
 
 
