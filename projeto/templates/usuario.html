@@ -6,7 +6,7 @@
     <div class="card">
         <section class="table__header">
             <div class="title">
-                <h1>Usuário</h1>
+                <h1>Líder</h1>
                 <button class="btn" title="Criar" onclick="openForm(this)" id="criar">
                     <i class="ri-add-circle-fill"></i>
                 </button>
@@ -15,16 +15,6 @@
             <div class="input-group">
                 <input type="search" name="search" id="search" placeholder="Pesquisar..." onkeyup="filterTable()">
                 <i class="ri-search-line"></i>
-            </div>
-
-            <!-- TODO: adicionar funcionalidade -->
-            <div class="col-sm-2">
-                <select class="form-select">
-                    <option selected="">Filtros:</option>
-                    <option value="1" checked>Ativos</option>
-                    <option value="2">Inativos</option>
-                    <option value="3">Todos</option>
-                </select>
             </div>
         </section>
         <section class="table__body">
@@ -43,15 +33,15 @@
                     {% for usuario in usuarios %}
                     <tr>
                         <td>{{ usuario.id }}</td>
-                        <td>{{ usuario.nome }}</td>
+                        <td>{{ usuario.username }}</td>
                         <td>{{ usuario.departamento }}</td>
                         <td>{{ usuario.email }}</td>
                         <td>{{ usuario.tipo }}</td>
                         <td>
-                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                    class="ri-settings-3-line" title="Editar" onclick="openForm(this)"></i></a>
-                            <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                    class="ri-delete-bin-2-line"></i></a>
+                            <a class="text-reset fs-16 px-1"> <i class="ri-settings-3-line"
+                                    title="Editar" onclick="openForm(this)"></i></a>
+                            <a class="text-reset fs-16 px-1"> <i
+                                    class="ri-delete-bin-2-line" onclick="openPopup(this)"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -69,7 +59,7 @@
 
         <div class="text-input">
             <label for="nome">Nome</label>
-            {{ form.nome }}
+            {{ form.username }}
         </div>
         <div class="text-input">
             <label for="departamento">Setor</label>
@@ -81,7 +71,7 @@
         </div>
         <div class="text-input">
             <label for="senha">Senha</label>
-            {{ form.senha }}
+            {{ form.password }}
         </div>
         <div class="buttons">
             <button type="submit" class="btn-save" id="btn-save">Salvar</button>
